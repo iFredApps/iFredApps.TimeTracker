@@ -1,4 +1,7 @@
-﻿using iFredApps.TimeTracker.UI.Models;
+﻿using ControlzEx.Theming;
+using iFredApps.TimeTracker.UI.Models;
+using MahApps.Metro.Theming;
+using System;
 using System.Windows;
 
 namespace iFredApps.TimeTracker.UI
@@ -16,6 +19,16 @@ namespace iFredApps.TimeTracker.UI
       protected override void OnStartup(StartupEventArgs e)
       {
          base.OnStartup(e);
+
+         var theme = ThemeManager.Current.AddLibraryTheme(
+            new LibraryTheme(
+                new Uri("pack://application:,,,/Themes/Theme.Dark.BluePurple.xaml"),
+                MahAppsLibraryThemeProvider.DefaultInstance
+            )
+         );
+
+
+         ThemeManager.Current.ChangeTheme(this, theme);
 
          if (AppWebClient.Instance.GetLoggedUserData() != null)
          {
